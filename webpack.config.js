@@ -11,6 +11,12 @@ module.exports = {
     clean: true
   },
   devtool:'source-map',
+  resolve: {
+    // ... rest of the resolve config
+    fallback: {
+      "path": require.resolve("path-browserify")
+    }
+  },
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'dist'),
@@ -27,6 +33,7 @@ module.exports = {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -38,6 +45,7 @@ module.exports = {
         }
       }
     ],
+
   },
   plugins: [
     new HtmlWebpackPlugin({
